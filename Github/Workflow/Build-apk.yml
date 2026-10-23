@@ -1,0 +1,21 @@
+name: Build Android APK
+
+on:
+workflow_dispatch:
+
+jobs:
+build:
+runs-on: ubuntu-latest
+steps:
+- name: Checkout repository
+uses: actions/checkout@v4
+
+  - name: Check for Godot project
+    run: |
+      if ! find . -name project.godot -print -quit | grep -q .; then
+        echo "No Godot project found. Add a Godot project before building an APK."
+        exit 1
+      fi
+
+  - name: Build status
+    run: echo "Godot project found. Android export setup is still required."
